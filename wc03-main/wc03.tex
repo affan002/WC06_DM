@@ -1,0 +1,109 @@
+\documentclass[a4paper]{exam}
+
+\usepackage{amsmath, amsfonts}
+\usepackage{array}
+\usepackage{caption}
+\usepackage[a4paper]{geometry}
+\usepackage{hyperref}
+
+\header{CS/MATH 113}{WC03: Logical Primitives}{Spring 2024}
+\footer{}{Page \thepage\ of \numpages}{}
+\runningheadrule
+\runningfootrule
+
+\printanswers
+
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "c" column type
+\newcommand\T{\ensuremath{\mathrm{T}}}
+\newcommand\F{\ensuremath{\mathrm{F}}}
+
+\title{Weekly Challenge 03: Logical Primitives}
+\author{CS/MATH 113 Discrete Mathematics}
+\date{Spring 2024}
+
+\qformat{{\large\bf \thequestion. \thequestiontitle}\hfill}
+\boxedpoints
+
+\begin{document}
+\maketitle
+  \begin{table}[!b]
+    \captionsetup{font=small}
+    \small
+    \begin{center}
+  \begin{tabular}{|rC|}
+    \hline
+    1. & \lnot \\\hline
+    2. & \lor \\\hline
+    3. & \land \\\hline
+    4. & \implies \\\hline
+    5. & \iff \\\hline
+  \end{tabular}
+  \hspace{50pt}
+  \begin{tabular}{|rC|rC|}
+    \hline
+    1. & \lnot, \land & 6.& \land, \implies \\\hline
+    2. & \lnot, \lor & 7. & \land, \iff \\\hline
+    3. & \lnot, \implies & 8. & \lor, \implies \\\hline
+    4. & \lnot, \iff & 9. & \lor, \iff \\\hline
+    5. & \land, \lor & 10. & \implies, \iff \\\hline
+  \end{tabular}
+  \bigskip
+  
+    \begin{tabular}{C||C|l}
+      & \text{Primitives: }\lnot, \land & Comment\\
+      \hline\hline
+      \lnot p &  & $\lnot$ is directly used as a primitive.\\
+      p \lor q & \lnot(\lnot p \land \lnot q) & \\
+      p \land q & & $\land$ is directly used as a primitive.\\
+      p \implies q & \lnot p \lor q & using $\lnot$ and $\lor$ as defined above.\\
+      p \iff q & (p \implies q) \land (q \implies p) & using $\implies$ as defined above.\\
+    \end{tabular}
+  \end{center}
+    \caption{(top) The 5 individual logical connectives and their 10 possible pairs. (bottom) Computing the 5 connectives using the pair $\lnot, \land$ as primitives. Once a connective has been computed, e.g. $\lor$ above, it can be used in further computations as a primitive, e.g. the use of $\lor$ in the computation of $\implies$ above. You are encouraged to verify the above operations using the \href{https://trutabgen.com}{Truth Table Generator}.}
+    \label{table}
+  \end{table}
+
+\begin{questions}
+  \titledquestion{Core Set}
+  Table \ref{table} shows the 5 individual logical connectives and their 10 possible pairs.
+\begin{parts}
+  \part[5] One of the individual connectives can, by itself and through the use of \T\ and \F, be used to compute all the other connectives, e.g. $\iff$ can be be used to compute $\lnot$ as: $\lnot p \equiv p \iff F$. Find this connective and how it can be used.
+
+  Fill the right-most column in the table below, mentioning the connective in the header. See the middle column at the bottom of Table \ref{table} as an example of using 2 primitives.
+  \begin{solution}
+    % Enter your solution here.
+    \begin{tabular}{C||C}
+      & \text{Primitive: } \implies \\
+      \hline\hline
+      \lnot p & p\rightarrow F \\
+      p \lor q &\lnot p \rightarrow q \\
+      p \land q &\lnot(\lnot p \lor \lnot q) \\
+      p \implies q &  \\
+      p \iff q & (p \rightarrow q) \land (q \rightarrow p)\\
+    \end{tabular}
+  \end{solution}
+  \newpage
+  \part Table \ref{table} shows how Pair 1 can be used to compute all the individual connectives. Similarly, some other (but not all) pairs can be used to compute the other connectives. Explore the possible pairs, and how they can be used. Skip the pairs that contain the connective found in the previous part. For example, if the connective in the previous part was $\lor$, then pairs 2, 5, 8, and 9 can be ignored because they contain $\lor$.
+
+  The table below already contains the pair from Table \ref{table}. Add another pair and complete the rightmost column. Add more columns for any further pairs.
+  \begin{solution} \null\newline
+    % Enter your solution here.
+    \begin{tabular}{C||C|C}
+      & \text{Primitives: }\lnot, \land & \text{Primitives: } \lnot, \lor \\
+      \hline\hline
+      \lnot p &  & \\
+      p \lor q & \lnot(\lnot p \land \lnot q) & \\
+      p \land q & & \lnot(\lnot p \lor \lnot q)\\
+      p \implies q & \lnot p \lor q & \lnot p \lor q\\
+      p \iff q & (p \implies q) \land (q \implies p) & (p \implies q) \land (q \implies p)\\
+    \end{tabular}
+  \end{solution}
+\end{parts}
+\end{questions}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
